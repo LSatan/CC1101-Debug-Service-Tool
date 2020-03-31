@@ -1,0 +1,3 @@
+cc1101_debug_service	KEYWORD1
+cc1101_debug	KEYWORD1
+debug		KEYWORD2
