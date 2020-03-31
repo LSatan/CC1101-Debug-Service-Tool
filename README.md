@@ -8,6 +8,7 @@ read and change. You can switch to send or receive.
 Set the transmission strength and change or call up the frequency.
 
 For: https://github.com/LSatan/SmartRC-CC1101-Driver-Lib
+
 ---------------------------------------------
 Commands
 ---------------------------------------------
@@ -15,11 +16,17 @@ Enter in the serial monitor.
 
 
 reg 		| Shows all settings of the register.
+
 ver 		| Displays the cc1101 version number.
+
 mhz? 		| shows the current frequency and the associated register entries.
+
 mhz=433.92 	| sets the specified frequency and then displays it.
+
 pa=10 		| sets the transmission strength to the set value.
+
 tx 		| puts the cc1101 in transmit mode.
+
 rx 		| puts the cc1101 in receive mode.
 
 Register entry +? Example:
