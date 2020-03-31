@@ -1,9 +1,6 @@
 #define cc1101_debug_service_h
 #include <Arduino.h>
 
-
-
-
 class CC1101_debug
 {
 private:
@@ -13,7 +10,6 @@ void show_version(void);
 void show_register(void);
 
 public:
-
 
 void debug(void);
 
