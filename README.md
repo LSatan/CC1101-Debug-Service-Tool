@@ -1,6 +1,6 @@
 ﻿# CC1101 debug service tool v0.1
 
-Caution. This library is at the very beginning and should be viewed as a pre-release version. More functions will be added over time.
+Note! This library is at the very beginning and should be viewed as a pre-release version. More functions will be added over time.
 if you have any suggestions, feel free to share them under "issues".
 
 ---------------------------------------------
