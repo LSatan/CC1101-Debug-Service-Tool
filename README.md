@@ -15,27 +15,27 @@ Commands
 Enter in the serial monitor.
 
 
-reg 		| Shows all settings of the register.
+reg 		 (Shows all settings of the register.)
 
-ver 		| Displays the cc1101 version number.
+ver 		 (Displays the cc1101 version number.)
 
-mhz? 		| shows the current frequency and the associated register entries.
+mhz? 		 (shows the current frequency and the associated register entries.)
 
-mhz=433.92 	| sets the specified frequency and then displays it.
+mhz=433.92 	 (sets the specified frequency and then displays it.)
 
-pa=10 		| sets the transmission strength to the set value.
+pa=10 		 (sets the transmission strength to the set value.)
 
-tx 		| puts the cc1101 in transmit mode.
+tx 		 (puts the cc1101 in transmit mode.)
 
-rx 		| puts the cc1101 in receive mode.
+rx 		 (puts the cc1101 in receive mode.)
 
 Register entry +? Example:
 
-MDMCFG0? 	| shows the current value for this entry
+MDMCFG0? 	 (shows the current value for this entry.)
 
 Register entry + hex value Example:
 
-MDMCFG0=FF 	| sets the hex value FF for this entry.
+MDMCFG0=FF 	 (sets the hex value FF for this entry.)
 
 
 
