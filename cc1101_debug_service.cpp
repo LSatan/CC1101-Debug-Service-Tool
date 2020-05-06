@@ -180,11 +180,11 @@ void CC1101_debug::show_version(void){
 print_line(30);
 Serial.println("CC1101 Version");
 print_line(30);
-Serial.print("PARTNUM   ");
+print_string("PARTNUM");
 Serial.println(ELECHOUSE_cc1101.SpiReadStatus(0x30), HEX);
-Serial.print("VERSION   ");
+print_string("VERSION");
 Serial.println(ELECHOUSE_cc1101.SpiReadStatus(0x31), HEX);
-Serial.print("MARCSTATE ");
+print_string("MARCSTATE");
 Serial.println(ELECHOUSE_cc1101.SpiReadStatus(0x35), HEX);
 }
 //----------------------------------------------------
