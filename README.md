@@ -41,6 +41,12 @@ cc1101_debug.save_slot(0);		//save the register entries to eeprom to slot0. Ther
 Note:		This service function uses the least storage space.
 
 ---------------------------------------------
+Preview service (advanced features)
+---------------------------------------------
+
+<img src="https://github.com/LSatan/CC1101-Debug-Service-Tool/blob/master/img/install_example_service.png"/>
+
+---------------------------------------------
 Commands for debug/service
 ---------------------------------------------
 Enter in the serial monitor:
