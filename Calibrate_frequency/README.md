@@ -21,7 +21,7 @@ Enter the frequency band in the serial monitor that you want to calibrate. In th
 <img src="https://github.com/LSatan/CC1101-Debug-Service-Tool/blob/master/img/cl2.png"/>
 
 
-The cc1101 now starts to send a click..click .. signal for 2 seconds every 3 seconds. so we're looking at 300 MHz in the SDR.
+The cc1101 now starts to send a click..click .. signal for 2 seconds every 4 seconds. so we're looking at 300 MHz in the SDR.
 
 <img src="https://github.com/LSatan/CC1101-Debug-Service-Tool/blob/master/img/cl3.png"/>
 
