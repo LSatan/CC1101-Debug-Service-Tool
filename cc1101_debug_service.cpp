@@ -56,11 +56,11 @@ static const char *Register[] = {
 };
 
 bool startup = 0;
-byte m4RxBw;
-byte m4DaRa;
-byte m1FEC;
-byte m1PRE;
-byte m1CHSP;
+byte m4rxbw;
+byte m4dara;
+byte m1fec;
+byte m1pre;
+byte m1chsp;
 int slot[6];
 //----------------------------------------------------
 void CC1101_debug::debug(void){
@@ -251,7 +251,7 @@ Serial.println(" Mhz");
 float c = 25.390625;
 for (int i = 0; i<ELECHOUSE_cc1101.SpiReadStatus(20); i++){c+=0.099182;}
 Split_MDMCFG1();
-for (int i = 0; i<m1CHSP; i++){c*=2;}
+for (int i = 0; i<m1chsp; i++){c*=2;}
 c*=ELECHOUSE_cc1101.SpiReadStatus(10);
 c/=1000;
 c+=f;
@@ -296,7 +296,7 @@ void CC1101_debug::show_chsp(void){
 float f = 25.390625;
 for (int i = 0; i<ELECHOUSE_cc1101.SpiReadStatus(20); i++){f+=0.099182;}
 Split_MDMCFG1();
-for (int i = 0; i<m1CHSP; i++){f*=2;}
+for (int i = 0; i<m1chsp; i++){f*=2;}
 print_string("CHSP");
 Serial.print(f,6);
 Serial.println(" kHz");
@@ -308,35 +308,9 @@ void CC1101_debug::write_chsp(float f){
 print_line(30);
 Serial.println("Write CHSP");
 print_line(30);
-get_chsp(f);
+//get_chsp(f);
+ELECHOUSE_cc1101.setChsp(f);
 show_chsp();
-}
-//----------------------------------------------------
-void CC1101_debug::setChsp(float f){
-get_chsp(f);
-}
-//----------------------------------------------------
-void CC1101_debug::get_chsp(float f){
-int mdc0 = 0;
-int mdc1 = 0;
-if (f > 405.456543){f = 405.456543;}
-if (f < 25.390625){f = 25.390625;}
-for (int i = 0; i<5; i++){
-if (f <= 50.682068){
-f -= 25.390625;
-f /= 0.0991825;
-mdc0 = f;
-float s1 = (f - mdc0) *10;
-if (s1 >= 5){mdc0++;}
-i = 5;
-}else{
-mdc1++;
-f/=2;
-}
-}
-Split_MDMCFG1();
-ELECHOUSE_cc1101.SpiWriteReg(19,mdc1+m1FEC+m1PRE);
-ELECHOUSE_cc1101.SpiWriteReg(20,mdc0);
 }
 //----------------------------------------------------
 void CC1101_debug::Split_MDMCFG1(void){
@@ -348,9 +322,9 @@ if (calc >= 128){calc -= 128; s1++;}
 else if (calc >= 16){calc -= 16; s2++;}
 else{i=1;}
 }
-m1FEC = s1 * 128;
-m1PRE = s2 * 16;
-m1CHSP = calc;
+m1fec = s1 * 128;
+m1pre = s2 * 16;
+m1chsp = calc;
 }
 /*----------------------------------------------------
 Receive bandwidth functions
@@ -386,34 +360,13 @@ Serial.println(" kHz");
 print_register(16);
 }
 //----------------------------------------------------
-void CC1101_debug::setRxbw(float f){
-get_rxbw(f);
-}
-//----------------------------------------------------
 void CC1101_debug::write_rxbw(float f){
 print_line(30);
 Serial.println("Write RXBW");
 print_line(30);
-get_rxbw(f);
+//get_rxbw(f);
+ELECHOUSE_cc1101.setRxBW(f);
 show_rxbw();
-}
-//----------------------------------------------------
-void CC1101_debug::get_rxbw(float f){
-int s1 = 3;
-int s2 = 3;
-for (int i = 0; i<3; i++){
-if (f > 101.5625){f/=2; s1--;}
-else{i=3;}
-}
-for (int i = 0; i<3; i++){
-if (f > 58.1){f/=1.25; s2--;}
-else{i=3;}
-}
-s1 *= 64;
-s2 *= 16;
-s1 += s2;
-Split_MDMCFG4();            
-ELECHOUSE_cc1101.SpiWriteReg(16,s1+m4DaRa);
 }
 //----------------------------------------------------
 void CC1101_debug::Split_MDMCFG4(void){
@@ -428,9 +381,9 @@ else{i=1;}
 s1 *= 64;
 s2 *= 16;
 s1 += s2;
-m4RxBw = s1;
+m4rxbw = s1;
 s1 = ELECHOUSE_cc1101.SpiReadStatus(16)-s1;
-m4DaRa = s1;
+m4dara = s1;
 }
 /*----------------------------------------------------
 Data rate functions
@@ -442,15 +395,12 @@ print_line(30);
 show_drate();
 }
 //----------------------------------------------------
-void CC1101_debug::setDRate(float d){
-get_drate(d);
-}
-//----------------------------------------------------
 void CC1101_debug::write_drate(float d){
 print_line(30);
 Serial.println("Write DataRate");
 print_line(30);
-get_drate(d);
+//get_drate(d);
+ELECHOUSE_cc1101.setDRate(d);
 show_drate();
 }
 //----------------------------------------------------
@@ -459,36 +409,12 @@ int calc = ELECHOUSE_cc1101.SpiReadStatus(17);
 float f = 0.0247955;
 for (int i = 0; i<calc; i++){f+=0.000096858;}
 Split_MDMCFG4();
-for (int i = 0; i<m4DaRa; i++){f*=2;}
+for (int i = 0; i<m4dara; i++){f*=2;}
 print_string("DRATE");
 Serial.print(f,7);
 Serial.println(" kBaud");
 print_register(16);
 print_register(17);
-}
-//----------------------------------------------------
-void CC1101_debug::get_drate(float d){
-float c = d;
-int mdc3 = 0;
-if (c > 1621.83){c = 1621.83;}
-if (c < 0.0247955){c = 0.0247955;}
-int mdc4 = 0;
-for (int i = 0; i<20; i++){
-if (c <= 0.0494942){
-c = c - 0.0247955;
-c = c / 0.00009685;
-mdc3 = c;
-float s1 = (c - mdc3) *10;
-if (s1 >= 5){mdc3++;}
-i = 20;
-}else{
-mdc4++;
-c = c/2;
-}
-}
-Split_MDMCFG4();
-ELECHOUSE_cc1101.SpiWriteReg(16,  m4RxBw+mdc4);
-ELECHOUSE_cc1101.SpiWriteReg(17,  mdc3);
 }
 /*----------------------------------------------------
 Deviation functions
@@ -500,15 +426,12 @@ print_line(30);
 show_deviation();
 }
 //----------------------------------------------------
-void CC1101_debug::setDeviation(float d){
-get_deviation(d);
-}
-//----------------------------------------------------
 void CC1101_debug::write_deviation(float d){
 print_line(30);
 Serial.println("Write Deviation");
 print_line(30);
-get_deviation(d);
+//get_deviation(d);
+ELECHOUSE_cc1101.setDeviation(d);
 show_deviation();  
 }
 //----------------------------------------------------
@@ -528,7 +451,7 @@ Serial.println(" kHz");
 print_register(21);
 }
 //----------------------------------------------------
-void CC1101_debug::get_deviation(float d){
+/*void CC1101_debug::get_deviation(float d){
 float f = 1.586914;
 float v = 0.19836425;
 int c = 0;
@@ -541,7 +464,7 @@ if (f>=d){c=i;i=255;}
 c++;
 }
 ELECHOUSE_cc1101.SpiWriteReg(21,c);
-}
+}*/
 /*----------------------------------------------------
 EEPROM functions
 ----------------------------------------------------*/

@@ -22,24 +22,24 @@ void write_chan(int c);
 void chspQ(void);
 void show_chsp(void);
 void write_chsp(float f);
-void get_chsp(float f);
+//void get_chsp(float f);
 
 void rxbwQ(void);
 void show_rxbw(void);
 void write_rxbw(float f);
-void get_rxbw(float f);
+//void get_rxbw(float f);
 
 void Split_MDMCFG4(void);
 
 void drateQ(void);
 void write_drate(float d);
 void show_drate(void);
-void get_drate(float d);
+//void get_drate(float d);
 
 void deviationQ(void);
 void write_deviation(float d);
 void show_deviation(void);
-void get_deviation(float d);
+//void get_deviation(float d);
 
 void get_slot(int s);
 void show_slot(void);
@@ -47,10 +47,6 @@ void show_slot(void);
 public:
 
 void debug(void);
-void setChsp(float f);
-void setRxbw(float f);
-void setDRate(float d);
-void setDeviation(float d);
 void save_slot(int s);
 void load_slot(int s);
 

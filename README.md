@@ -1,4 +1,4 @@
-﻿# CC1101 debug service tool v1.0
+﻿# CC1101 debug service tool v1.0.1 pre-release for SmartRC-CC1101-Driver-Lib v.2.5.1
 
 Note: if you have any suggestions, feel free to share them under "issues".
 
