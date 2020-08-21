@@ -66,7 +66,7 @@ int slot[6];
 void CC1101_debug::debug(void){
 if (startup == 0){
 print_line(50);
-Serial.println("CC1101 service/debug tool v1.0");
+Serial.println("CC1101 service/debug tool v1.0.1 pre-release");
 print_line(50);
 show_version();
 show_register();
