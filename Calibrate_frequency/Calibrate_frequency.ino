@@ -14,10 +14,10 @@ gdo0 = 5;  // for esp8266! GDO0 on pin 5 = D1.
 #else
 gdo0 = 6;  // for Arduino! GDO0 on pin 6.
 #endif 
-  
+ 
 Serial.begin(115200);
+pinMode(gdo0,OUTPUT);
 ELECHOUSE_cc1101.Init();
-ELECHOUSE_cc1101.setGDO(gdo0,0);
 }
 
 void loop() {
